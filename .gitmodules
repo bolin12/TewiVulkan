@@ -30,7 +30,6 @@
 	path = thirdparty/spirv-tools
 	url = https://github.com/KhronosGroup/SPIRV-Tools
 
-
 [submodule "thirdparty/vulkan-headers"]
 	path = thirdparty/vulkan-headers
 	url = https://github.com/KhronosGroup/Vulkan-Headers
@@ -38,4 +37,16 @@
 [submodule "thirdparty/ktx"]
 	path = thirdparty/ktx
 	url = https://github.com/KhronosGroup/KTX-Software
+
+[submodule "thirdparty/tinyobjloader"]
+	path = thirdparty/tinyobjloader
+	url = https://github.com/tinyobjloader/tinyobjloader
+
+[submodule "thirdparty/tinygltf"]
+	path = thirdparty/tinygltf
+	url = https://github.com/syoyo/tinygltf
+
+[submodule "thirdparty/glslang"]
+	path = thirdparty/glslang
+	url = https://github.com/KhronosGroup/glslang
 
