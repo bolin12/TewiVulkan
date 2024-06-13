@@ -36,6 +36,6 @@
 	url = https://github.com/KhronosGroup/Vulkan-Headers
 
 [submodule "thirdparty/ktx"]
-    path = thirdparty/ktx
-    url = https://github.com/KhronosGroup/KTX-Software
+	path = thirdparty/ktx
+	url = https://github.com/KhronosGroup/KTX-Software
 
