@@ -29,13 +29,20 @@ function(buildExample EXAMPLE_NAME)
 	source_group("Shaders\\HLSL" FILES ${SHADERS_HLSL})
 	# Add optional readme / tutorial
 	file(GLOB README_FILES "${EXAMPLE_FOLDER}/*.md")
-	if(WIN32)
-		add_executable(${EXAMPLE_NAME} WIN32 ${MAIN_CPP} ${SOURCE} ${MAIN_HEADER} ${SHADERS_GLSL} ${SHADERS_HLSL} ${README_FILES})
+	# if(WIN32)
+
+    add_executable(${EXAMPLE_NAME} WIN32 ${MAIN_CPP} ${SOURCE} ${MAIN_HEADER} ${SHADERS_GLSL} ${SHADERS_HLSL} ${README_FILES})
+    message(STATUS "VULKAN_LIBRARY: ${Vulkan_LIBRARY}")
+    target_link_libraries(${EXAMPLE_NAME} ${Vulkan_LIBRARY})
 		# target_link_libraries(${EXAMPLE_NAME} base ${Vulkan_LIBRARY} ${WINLIBS})
-	else(WIN32)
-		add_executable(${EXAMPLE_NAME} ${MAIN_CPP} ${SOURCE} ${MAIN_HEADER} ${SHADERS_GLSL} ${SHADERS_HLSL} ${README_FILES})
+	# else(WIN32)
+		# add_executable(${EXAMPLE_NAME} ${MAIN_CPP} ${SOURCE} ${MAIN_HEADER} ${SHADERS_GLSL} ${SHADERS_HLSL} ${README_FILES})
+
+        # message(STATUS "VULKAN_LIBRARY: ${Vulkan_LIBRARY}")
+
+        # target_link_libraries(${EXAMPLE_NAME} ${Vulkan_LIBRARY})
 		# target_link_libraries(${EXAMPLE_NAME} base )
-	endif(WIN32)
+	# endif(WIN32)
 
 	file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 	set_target_properties(${EXAMPLE_NAME} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
@@ -45,6 +52,9 @@ function(buildExample EXAMPLE_NAME)
 		install(TARGETS ${EXAMPLE_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 	endif()
 endfunction(buildExample)
+
+
+
 
 # Build all examples
 function(buildExamples)
