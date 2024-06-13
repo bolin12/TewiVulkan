@@ -21,3 +21,15 @@ Engine:
 [NVIDIAGameWorks/Falcor: Real-Time Rendering Framework (github.com)](https://github.com/NVIDIAGameWorks/Falcor)
 
 [GPUOpen-LibrariesAndSDKs/V-EZ (github.com)](https://github.com/GPUOpen-LibrariesAndSDKs/V-EZ)
+
+
+Setup:
+
+```bash
+# clone
+git clone --recursive https://github.com/bolin12/TewiVulkan.git
+
+# or init submodule manually:
+git submodule init
+git submodule update
+```
