@@ -8,17 +8,14 @@ function(buildExample EXAMPLE_NAME)
 	# Main
 	file(GLOB SOURCE *.cpp ${BASE_HEADERS} ${EXAMPLE_FOLDER}/*.cpp)
 	SET(MAIN_CPP ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.cpp)
-	if(EXISTS ${EXAMPLE_FOLDER}/main.cpp)
-		SET(MAIN_CPP ${EXAMPLE_FOLDER}/main.cpp)
-	ENDIF()
+    message(STATUS "SOURCE: ${SOURCE}")
+    message(STATUS "MAIN_CPP: ${MAIN_CPP}")
+
+
 	if(EXISTS ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.h)
 		SET(MAIN_HEADER ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.h)
 	ENDIF()
-	# imgui example requires additional source files
-	IF(${EXAMPLE_NAME} STREQUAL "imgui")
-		file(GLOB ADD_SOURCE "../thirdparty/imgui/*.cpp")
-		SET(SOURCE ${SOURCE} ${ADD_SOURCE})
-	ENDIF()
+
 	# wayland requires additional source files
 	IF(USE_WAYLAND_WSI)
 		SET(SOURCE ${SOURCE} ${CMAKE_BINARY_DIR}/xdg-shell-client-protocol.h ${CMAKE_BINARY_DIR}/xdg-shell-protocol.c)
@@ -34,42 +31,15 @@ function(buildExample EXAMPLE_NAME)
 	file(GLOB README_FILES "${EXAMPLE_FOLDER}/*.md")
 	if(WIN32)
 		add_executable(${EXAMPLE_NAME} WIN32 ${MAIN_CPP} ${SOURCE} ${MAIN_HEADER} ${SHADERS_GLSL} ${SHADERS_HLSL} ${README_FILES})
-		target_link_libraries(${EXAMPLE_NAME} base ${Vulkan_LIBRARY} ${WINLIBS})
+		# target_link_libraries(${EXAMPLE_NAME} base ${Vulkan_LIBRARY} ${WINLIBS})
 	else(WIN32)
 		add_executable(${EXAMPLE_NAME} ${MAIN_CPP} ${SOURCE} ${MAIN_HEADER} ${SHADERS_GLSL} ${SHADERS_HLSL} ${README_FILES})
-		target_link_libraries(${EXAMPLE_NAME} base )
+		# target_link_libraries(${EXAMPLE_NAME} base )
 	endif(WIN32)
 
 	file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 	set_target_properties(${EXAMPLE_NAME} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-	if(${EXAMPLE_NAME} STREQUAL "texture3d")
-		if(APPLE)
-			# SRS - Use MacPorts paths as default since the same on x86 and Apple Silicon, can override for homebrew on cmake command line
-			if(NOT OpenMP_omp_LIBRARY AND EXISTS /opt/local/lib/libomp/libomp.dylib)
-				set(OpenMP_omp_LIBRARY /opt/local/lib/libomp/libomp.dylib)
-			endif()
-			if(CMAKE_C_COMPILER_ID MATCHES "Clang\$")
-				set(OpenMP_C_FLAGS "-Xclang -fopenmp")
-				set(OpenMP_C_LIB_NAMES "omp")
-				if(NOT OpenMP_C_INCLUDE_DIR AND EXISTS /opt/local/include/libomp)
-					set(OpenMP_C_INCLUDE_DIR /opt/local/include/libomp)
-				endif()
-			endif()
-			if(CMAKE_CXX_COMPILER_ID MATCHES "Clang\$")
-				set(OpenMP_CXX_FLAGS "-Xclang -fopenmp")
-				set(OpenMP_CXX_LIB_NAMES "omp")
-				if(NOT OpenMP_CXX_INCLUDE_DIR AND EXISTS /opt/local/include/libomp)
-					set(OpenMP_CXX_INCLUDE_DIR /opt/local/include/libomp)
-				endif()
-			endif()
-		endif()
-		find_package(OpenMP)
-		if(OpenMP_CXX_FOUND)
-			set_target_properties(${EXAMPLE_NAME} PROPERTIES COMPILE_FLAGS ${OpenMP_CXX_FLAGS})
-			target_include_directories(${EXAMPLE_NAME} PRIVATE ${OpenMP_CXX_INCLUDE_DIRS})
-			target_link_libraries(${EXAMPLE_NAME} ${OpenMP_CXX_LIBRARIES})
-		endif()
-	endif()
+	
 
 	if(RESOURCE_INSTALL_DIR)
 		install(TARGETS ${EXAMPLE_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
@@ -84,7 +54,7 @@ function(buildExamples)
 endfunction(buildExamples)
 
 set(EXAMPLES
-	main
+	demo
 )
 
 buildExamples()
