@@ -35,6 +35,7 @@
 	path = thirdparty/vulkan-headers
 	url = https://github.com/KhronosGroup/Vulkan-Headers
 
-[submodule "external/glm"]
-	path = external/glm
-	url = https://github.com/g-truc/glm
+[submodule "thirdparty/ktx"]
+    path = thirdparty/ktx
+    url = https://github.com/KhronosGroup/KTX-Software
+
