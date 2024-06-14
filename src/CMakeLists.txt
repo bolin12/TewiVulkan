@@ -34,19 +34,13 @@ function(buildExample EXAMPLE_NAME)
     add_executable(${EXAMPLE_NAME} WIN32 ${MAIN_CPP} ${SOURCE} ${MAIN_HEADER} ${SHADERS_GLSL} ${SHADERS_HLSL} ${README_FILES})
     message(STATUS "VULKAN_LIBRARY: ${Vulkan_LIBRARY}")
     target_link_libraries(${EXAMPLE_NAME} ${Vulkan_LIBRARY})
-		# target_link_libraries(${EXAMPLE_NAME} base ${Vulkan_LIBRARY} ${WINLIBS})
-	# else(WIN32)
-		# add_executable(${EXAMPLE_NAME} ${MAIN_CPP} ${SOURCE} ${MAIN_HEADER} ${SHADERS_GLSL} ${SHADERS_HLSL} ${README_FILES})
+    target_link_libraries(${EXAMPLE_NAME} ${GLFW3_LIBRARY} )
 
-        # message(STATUS "VULKAN_LIBRARY: ${Vulkan_LIBRARY}")
 
-        # target_link_libraries(${EXAMPLE_NAME} ${Vulkan_LIBRARY})
-		# target_link_libraries(${EXAMPLE_NAME} base )
-	# endif(WIN32)
 
 	file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 	set_target_properties(${EXAMPLE_NAME} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-	
+	# set_target_properties(${EXAMPLE_NAME} PROPERTIES LINK_FLAGS /DEBUG)
 
 	if(RESOURCE_INSTALL_DIR)
 		install(TARGETS ${EXAMPLE_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
