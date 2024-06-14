@@ -37,6 +37,10 @@ function(buildExample EXAMPLE_NAME)
     target_link_libraries(${EXAMPLE_NAME} ${GLFW3_LIBRARY} )
 
 
+    IF(MSVC)
+        target_link_options(${EXAMPLE_NAME} PRIVATE "/SUBSYSTEM:CONSOLE")
+    ENDIF()
+
 
 	file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 	set_target_properties(${EXAMPLE_NAME} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
