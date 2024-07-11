@@ -23,9 +23,9 @@
 	url = https://github.com/KhronosGroup/SPIRV-Tools
 
 
-[submodule "thirdparty/ktx"]
-	path = thirdparty/ktx
-	url = https://github.com/KhronosGroup/KTX-Software
+# [submodule "thirdparty/ktx"]
+# 	path = thirdparty/ktx
+# 	url = https://github.com/KhronosGroup/KTX-Software
 
 [submodule "thirdparty/tinyobjloader"]
 	path = thirdparty/tinyobjloader
