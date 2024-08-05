@@ -41,6 +41,7 @@ file(GLOB_RECURSE SOURCE
     ${SRC_FOLDER}/core/*.cpp
     ${SRC_FOLDER}/core/*.h
 )
+message(STATUS "SOURCE : ${SOURCE}")
 
 
 SET(MAIN_CPP ${SRC_FOLDER}/main.cpp)
@@ -56,8 +57,8 @@ add_executable(main WIN32 ${MAIN_CPP} ${SOURCE} ${SHADERS_GLSL} )
 # message(STATUS "VULKAN_LIBRARY: ${Vulkan_LIBRARY}")
 
 target_link_libraries(main ${Vulkan_LIBRARY}  ${GLFW3_LIBRARY})
-target_include_directories(main PRIVATE ${Vulkan_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIRS} ${STB_IMAGE_SOURCES} ${TINYOBJLOADER_SOURCES})
-
+target_include_directories(main PRIVATE ${SRC_FOLDER}/core ${Vulkan_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIRS} ${STB_IMAGE_SOURCES} ${TINYOBJLOADER_SOURCES})
+# tewili todo: fix structure of this repo
 
 IF(MSVC)
     target_link_options(main PRIVATE "/SUBSYSTEM:CONSOLE")
