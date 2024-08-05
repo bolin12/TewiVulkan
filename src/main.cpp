@@ -643,8 +643,8 @@ private:
     }
 
     void createGraphicsPipeline() {
-        auto vertShaderCode = readFile("shaders/glsl/demo/demo.vert.spv");
-        auto fragShaderCode = readFile("shaders/glsl/demo/demo.frag.spv");
+        auto vertShaderCode = readFile("shaders/glsl/demo.vert.spv");
+        auto fragShaderCode = readFile("shaders/glsl/demo.frag.spv");
 
         VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
         VkShaderModule fragShaderModule = createShaderModule(fragShaderCode);
