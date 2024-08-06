@@ -1,3 +1,0 @@
-Shaders
-
-For shaders storage

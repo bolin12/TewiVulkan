@@ -1,4 +1,4 @@
-#include "Triangle.h"
+#include "core/Triangle.h"
 
 int main() {
     HelloTriangleApplication app;

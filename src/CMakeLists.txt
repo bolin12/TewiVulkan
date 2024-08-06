@@ -32,19 +32,11 @@ add_custom_target(
 
 
 
-# if(WIN32)
-
-SET(SRC_FOLDER ${CMAKE_CURRENT_SOURCE_DIR})
-# message(STATUS "Generating project file for example in ${EXAMPLE_FOLDER}")
-# Main
-file(GLOB_RECURSE SOURCE
-    ${SRC_FOLDER}/core/*.cpp
-    ${SRC_FOLDER}/core/*.h
-)
-message(STATUS "SOURCE : ${SOURCE}")
+file(GLOB_RECURSE HEADER_FILES "*.h")
+file(GLOB_RECURSE SOURCE_FILES "*.cpp")
 
 
-SET(MAIN_CPP ${SRC_FOLDER}/main.cpp)
+SET(MAIN_CPP main.cpp)
 # message(STATUS "SOURCE: ${SOURCE}")
 # message(STATUS "MAIN_CPP: ${MAIN_CPP}")
 
@@ -53,7 +45,7 @@ SET(MAIN_CPP ${SRC_FOLDER}/main.cpp)
 #     SET(MAIN_HEADER ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.h)
 # ENDIF()
 
-add_executable(main WIN32 ${MAIN_CPP} ${SOURCE} ${SHADERS_GLSL} )
+add_executable(main WIN32 ${MAIN_CPP} ${HEADER_FILES} ${SOURCE_FILES} ${SHADERS_GLSL} )
 # message(STATUS "VULKAN_LIBRARY: ${Vulkan_LIBRARY}")
 
 target_link_libraries(main ${Vulkan_LIBRARY}  ${GLFW3_LIBRARY})
