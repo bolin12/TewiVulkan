@@ -22,7 +22,7 @@ endforeach()
 
 
 add_custom_target(
-    Shaders ALL
+    shaders ALL
     DEPENDS ${SPIRV_BINARY_FILES}
     COMMENT "Shader SPIR-V Compilation Completed."
 )
