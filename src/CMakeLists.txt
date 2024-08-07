@@ -1,35 +1,31 @@
 
 # Add shaders
 #----------------------shader compile ------------------------------------------
-set(SHADER_DIR_GLSL "${CMAKE_SOURCE_DIR}/shaders/glsl")
-file(GLOB SHADERS_GLSL "${SHADER_DIR_GLSL}/*.vert" "${SHADER_DIR_GLSL}/*.frag" "${SHADER_DIR_GLSL}/*.comp" "${SHADER_DIR_GLSL}/*.geom" "${SHADER_DIR_GLSL}/*.tesc" "${SHADER_DIR_GLSL}/*.tese" "${SHADER_DIR_GLSL}/*.mesh" "${SHADER_DIR_GLSL}/*.task" "${SHADER_DIR_GLSL}/*.rgen" "${SHADER_DIR_GLSL}/*.rchit" "${SHADER_DIR_GLSL}/*.rmiss" "${SHADER_DIR_GLSL}/*.rcall" "${SHADER_DIR_GLSL}/*.rahit" "${SHADER_DIR_GLSL}/*.rint" "${SHADER_DIR_GLSL}/*.glsl")
+# set(SHADER_DIR_GLSL "${CMAKE_SOURCE_DIR}/shaders/glsl")
+# file(GLOB SHADERS_GLSL "${SHADER_DIR_GLSL}/*.vert" "${SHADER_DIR_GLSL}/*.frag" "${SHADER_DIR_GLSL}/*.comp" "${SHADER_DIR_GLSL}/*.geom" "${SHADER_DIR_GLSL}/*.tesc" "${SHADER_DIR_GLSL}/*.tese" "${SHADER_DIR_GLSL}/*.mesh" "${SHADER_DIR_GLSL}/*.task" "${SHADER_DIR_GLSL}/*.rgen" "${SHADER_DIR_GLSL}/*.rchit" "${SHADER_DIR_GLSL}/*.rmiss" "${SHADER_DIR_GLSL}/*.rcall" "${SHADER_DIR_GLSL}/*.rahit" "${SHADER_DIR_GLSL}/*.rint" "${SHADER_DIR_GLSL}/*.glsl")
 
-source_group("Shaders\\GLSL" FILES ${SHADERS_GLSL})
-message(STATUS "SHADERS_GLSL: ${SHADERS_GLSL}")
-
-
-foreach(SHADER ${SHADERS_GLSL})
-    get_filename_component(SHADER_NAME ${SHADER} NAME)
-    set(SHADER_SPIRV "${SHADER_DIR_GLSL}/${SHADER_NAME}.spv")
-    add_custom_command(
-        OUTPUT ${SHADER_SPIRV}
-        COMMAND ${Vulkan_GLSLC_EXECUTABLE} ${SHADER} -o ${SHADER_SPIRV}
-        DEPENDS ${SHADER}
-        COMMENT "Compiling ${SHADER_NAME}"
-    )
-    list(APPEND SPIRV_BINARY_FILES ${SHADER_SPIRV})
-endforeach()
+# source_group("Shaders\\GLSL" FILES ${SHADERS_GLSL})
+# message(STATUS "SHADERS_GLSL: ${SHADERS_GLSL}")
 
 
-add_custom_target(
-    shaders ALL
-    DEPENDS ${SPIRV_BINARY_FILES}
-    COMMENT "Shader SPIR-V Compilation Completed."
-)
+# foreach(SHADER ${SHADERS_GLSL})
+#     get_filename_component(SHADER_NAME ${SHADER} NAME)
+#     set(SHADER_SPIRV "${SHADER_DIR_GLSL}/${SHADER_NAME}.spv")
+#     add_custom_command(
+#         OUTPUT ${SHADER_SPIRV}
+#         COMMAND ${Vulkan_GLSLC_EXECUTABLE} ${SHADER} -o ${SHADER_SPIRV}
+#         DEPENDS ${SHADER}
+#         COMMENT "Compiling ${SHADER_NAME}"
+#     )
+#     list(APPEND SPIRV_BINARY_FILES ${SHADER_SPIRV})
+# endforeach()
 
 
-#-------------------shader compile---------------------------------------------
-
+# add_custom_target(
+#     shaders ALL
+#     DEPENDS ${SPIRV_BINARY_FILES}
+#     COMMENT "Shader SPIR-V Compilation Completed."
+# )
 
 
 file(GLOB_RECURSE HEADER_FILES "*.h")
@@ -37,15 +33,9 @@ file(GLOB_RECURSE SOURCE_FILES "*.cpp")
 
 
 SET(MAIN_CPP main.cpp)
-# message(STATUS "SOURCE: ${SOURCE}")
-# message(STATUS "MAIN_CPP: ${MAIN_CPP}")
 
 
-# if(EXISTS ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.h)
-#     SET(MAIN_HEADER ${EXAMPLE_FOLDER}/${EXAMPLE_NAME}.h)
-# ENDIF()
-
-add_executable(main WIN32 ${MAIN_CPP} ${HEADER_FILES} ${SOURCE_FILES} ${SHADERS_GLSL} )
+add_executable(main WIN32 ${MAIN_CPP} ${HEADER_FILES} ${SOURCE_FILES} )
 # message(STATUS "VULKAN_LIBRARY: ${Vulkan_LIBRARY}")
 
 target_link_libraries(main ${Vulkan_LIBRARY}  ${GLFW3_LIBRARY})

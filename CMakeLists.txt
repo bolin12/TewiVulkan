@@ -55,7 +55,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX -D_USE_MATH_DEFINES")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DVK_USE_PLATFORM_WIN32_KHR")
 # set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/")
 
+
+set(SHADER_COMPILE_TARGET ShaderCompile)
+
 add_subdirectory(src)
+add_subdirectory(shaders)
+
 
 
 include(cmake/print_all_variables.cmake)

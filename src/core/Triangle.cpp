@@ -505,8 +505,8 @@ void HelloTriangleApplication::createDescriptorSetLayout() {
 }
 
 void HelloTriangleApplication::createGraphicsPipeline() {
-    auto vertShaderCode = readFile("shaders/glsl/demo.vert.spv");
-    auto fragShaderCode = readFile("shaders/glsl/demo.frag.spv");
+    auto vertShaderCode = readFile("shaders/generated/spv/demo.vert.spv");
+    auto fragShaderCode = readFile("shaders/generated/spv/demo.frag.spv");
 
     VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
     VkShaderModule fragShaderModule = createShaderModule(fragShaderCode);

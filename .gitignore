@@ -236,3 +236,6 @@ data/models/cerberus/*.*
 data/README_asset_pack.md
 data/font*.*
 data/roboto*.*
+
+# ignore generated shader binary files
+shaders/generated
