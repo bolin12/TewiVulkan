@@ -20,7 +20,7 @@ set(GLM_SOURCES ${CMAKE_THIRD_PARTY_DIR}/glm)
 # foreach(dir ${dirs})
 #   message(STATUS "Include directory: ${dir}")
 # endforeach()
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 message(STATUS "CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
 
 # message(STATUS "CMAKE_FIND_PACKAGE_REDIRECTS_DIR: ${CMAKE_FIND_PACKAGE_REDIRECTS_DIR}")
