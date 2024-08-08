@@ -239,3 +239,4 @@ data/roboto*.*
 
 # ignore generated shader binary files
 shaders/generated
+cmake_snippet

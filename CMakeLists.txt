@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.19 FATAL_ERROR)
 
 set(NAME TewiVulkan)
 
@@ -58,8 +58,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DVK_USE_PLATFORM_WIN32_KHR")
 
 set(SHADER_COMPILE_TARGET ShaderCompile)
 
-add_subdirectory(src)
-add_subdirectory(shaders)
+set(BINARY_ROOT_DIR ${CMAKE_SOURCE_DIR}/bin)
+set(ASSET_DIR "/data")
+
+
 
 
 
@@ -68,14 +70,7 @@ include(cmake/print_all_variables.cmake)
 
 
 
-set(POST_BUILD_COMMANDS
-  COMMAND ${CMAKE_COMMAND} -E make_directory "${BINARY_ROOT_DIR}"
-  COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/resource" "${BINARY_ROOT_DIR}/resource"
-  COMMAND ${CMAKE_COMMAND} -E copy_directory "$<TARGET_FILE_DIR:${TARGET_NAME}>/" "${BINARY_ROOT_DIR}"
-  COMMAND ${CMAKE_COMMAND} -E copy "${ENGINE_ROOT_DIR}/${DEPLOY_CONFIG_DIR}/${TARGET_NAME}.ini" "${BINARY_ROOT_DIR}"
-  COMMAND ${CMAKE_COMMAND} -E copy "${ENGINE_ROOT_DIR}/${DEVELOP_CONFIG_DIR}/${TARGET_NAME}.ini" "$<TARGET_FILE_DIR:${TARGET_NAME}>/"
-  COMMAND ${CMAKE_COMMAND} -E remove_directory "${BINARY_ROOT_DIR}/${ENGINE_ASSET_DIR}"
-  COMMAND ${CMAKE_COMMAND} -E copy_directory "${ENGINE_ROOT_DIR}/${ENGINE_ASSET_DIR}" "${BINARY_ROOT_DIR}/${ENGINE_ASSET_DIR}"
-)
 
 
+add_subdirectory(src)
+add_subdirectory(shaders)
