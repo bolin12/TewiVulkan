@@ -12,7 +12,7 @@ function(compile_shader SHADERS TARGET_NAME SHADER_INCLUDE_FOLDER GENERATED_DIR 
 
         set(SPV_FILE "${CMAKE_CURRENT_SOURCE_DIR}/${GENERATED_DIR}/spv/${SHADER_NAME}.spv")
         set(CPP_FILE "${CMAKE_CURRENT_SOURCE_DIR}/${GENERATED_DIR}/cpp/${HEADER_NAME}.h")
-        # message(STATUS "Running command: ${GLSLANG_BIN} -I${SHADER_INCLUDE_FOLDER} -gVS -V100 -o ${SPV_FILE} ${SHADER}")
+        message(STATUS "Running command: ${GLSLANG_BIN} -I${SHADER_INCLUDE_FOLDER} -gVS -V100 -o ${SPV_FILE} ${SHADER}")
         add_custom_command(
             OUTPUT ${SPV_FILE}
             COMMAND ${CMAKE_COMMAND} -E echo "Running command: ${GLSLANG_BIN} -I${SHADER_INCLUDE_FOLDER} -gVS -V100 -o ${SPV_FILE} ${SHADER}"
@@ -65,7 +65,7 @@ if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${GENERATED_SHADER_FOLDER}/spv)
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${GENERATED_SHADER_FOLDER}/spv)
 endif()
 
-set(glslangValidator_executable ${Vulkan_GLSLANG_VALIDATOR_EXECUTABLE})
+
 message(STATUS "Vulkan_GLSLANG_VALIDATOR_EXECUTABLE: ${Vulkan_GLSLANG_VALIDATOR_EXECUTABLE}")
 compile_shader(
   "${SHADER_FILES}"

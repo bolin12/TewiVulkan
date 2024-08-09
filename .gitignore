@@ -227,6 +227,10 @@ data/models/cerberus/*.*
 *.vcxproj.filters
 *.vcxproj.user
 
+# Ignore jetbrains project folders
+*.idea
+*cmake-build*
+
 # Ignore macOS .DS_Store
 .DS_Store
 

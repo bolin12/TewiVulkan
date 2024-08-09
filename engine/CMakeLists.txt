@@ -1,31 +1,33 @@
-file(GLOB_RECURSE HEADER_FILES "*.h")
-file(GLOB_RECURSE SOURCE_FILES "*.cpp")
 
-
-set(MAIN_CPP main.cpp)
-
-
-add_executable(main WIN32 ${MAIN_CPP} ${HEADER_FILES} ${SOURCE_FILES} )
-
-
-target_link_libraries(main ${Vulkan_LIBRARY}  ${GLFW3_LIBRARY})
-target_include_directories(main PRIVATE ${SRC_FOLDER}/core ${Vulkan_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIRS} ${STB_IMAGE_SOURCES} ${TINYOBJLOADER_SOURCES})
-# tewili todo: fix structure of this repo
-
-IF(MSVC)
-    target_link_options(main PRIVATE "/SUBSYSTEM:CONSOLE")
-ENDIF()
-
-
-set_target_properties(main PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}) # tewili notes: influence file search path
+set(ENGINE_ROOT_DIR "${TEWI_ROOT_DIR}/engine")
+set(THIRD_PARTY_DIR "${ENGINE_ROOT_DIR}/3rdparty")
 
 
 
-set(ASSET_DIR "/data")
-set(POST_BUILD_COMMANDS
-  COMMAND ${CMAKE_COMMAND} -E make_directory "${BINARY_ROOT_DIR}"
-  COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/${ASSET_DIR}" "${BINARY_ROOT_DIR}/${ASSET_DIR}"
-  COMMAND ${CMAKE_COMMAND} -E copy_directory "$<TARGET_FILE_DIR:main>/" "${BINARY_ROOT_DIR}"
-)
+set(vulkan_include ${THIRD_PARTY_DIR}/VulkanSDK/include)
 
-add_custom_command(TARGET main ${POST_BUILD_COMMANDS})
+
+set(vulkan_lib ${THIRD_PARTY_DIR}/VulkanSDK/lib/vulkan-1.lib)
+set(glslangValidator_executable ${THIRD_PARTY_DIR}/VulkanSDK/bin/glslangValidator.exe)
+add_compile_definitions("PICCOLO_VK_LAYER_PATH=${THIRD_PARTY_DIR}/VulkanSDK/bin")
+
+
+message(STATUS "glslangValidator_executable :${glslangValidator_executable}")
+
+
+
+set(SHADER_COMPILE_TARGET shadercompile)
+
+
+
+add_subdirectory(shaders)
+
+add_subdirectory(3rdparty)
+
+add_subdirectory(source/editor)
+
+add_subdirectory(source/runtime)
+
+
+
+
