@@ -8,7 +8,7 @@ class TewiEditor
 public:
 
 
-
+    
     void initialize(TewiEngine * engine_runtime);
 
     void clear();
