@@ -18,6 +18,10 @@ public:
 
     void run();
 
+    bool tickOneFrame(float delta_time);
+
+    int getFPS() const {return m_fps;}
+
 
 protected:
 

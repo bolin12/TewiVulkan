@@ -21,7 +21,17 @@ void TewiEditor::run()
     while(true)
     {
         delta_time = m_engine_runtime->calculateDeltaTime();
+
+        // if(!m_engine_runtime->)
+        if(!m_engine_runtime->tickOneFrame(delta_time))
+            return;
     }
 
 }
+
+void TewiEditor::clear()
+{
+
+}
+
 

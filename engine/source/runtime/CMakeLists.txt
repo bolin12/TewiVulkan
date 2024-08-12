@@ -9,7 +9,9 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${HEADER_FILES} ${SOURCE_F
 
 
 
-add_library(${TARGET_NAME} ${HEADER_FILES} ${SOURCE_FILES} )
+add_library(${TARGET_NAME} ${HEADER_FILES} ${SOURCE_FILES}
+        function/render/render_system.cpp
+        function/render/render_system.h)
 set_target_properties(${TARGET_NAME} PROPERTIES CXX_STANDARD 17)
 
 
@@ -18,7 +20,7 @@ target_link_libraries(${TARGET_NAME} PUBLIC glfw)
 target_link_libraries(${TARGET_NAME} PUBLIC imgui)
 target_link_libraries(${TARGET_NAME} PUBLIC ${vulkan_lib})
 target_link_libraries(${TARGET_NAME} PUBLIC glm) # tewi wierd why commiting this line would cause include file not found error?
-
+target_link_libraries(${TARGET_NAME} PUBLIC spdlog::spdlog)
 
 target_include_directories(
   ${TARGET_NAME}
