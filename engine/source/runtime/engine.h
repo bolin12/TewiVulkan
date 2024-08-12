@@ -6,6 +6,7 @@ class TewiEngine
 {
 
     friend class TewiEditor;
+    static const float s_fps_alpha;
 
 public:
 
@@ -35,7 +36,8 @@ protected:
 protected:
     std::chrono::steady_clock::time_point m_last_tick_time_point {std::chrono::steady_clock::now()};
 
-    int m_frame_count {0};
+    float m_average_duration {0.f};
+    int   m_frame_count {0};
     int m_fps {0};
 
 
