@@ -1,11 +1,12 @@
 
-#include "Triangle.h"
-
+#include "runtime/function/render/Triangle.h"
+#include "runtime/function/render/Vertex.h"
 #define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+#include "spdlog/spdlog.h"
 
 #define TINYOBJLOADER_IMPLEMENTATION
-#include <tiny_obj_loader.h>
+#include "stb_image.h"
+#include "tiny_obj_loader.h"
 const uint32_t WIDTH = 1920;
 const uint32_t HEIGHT = 1080;
 
@@ -63,25 +64,6 @@ struct UniformBufferObject {
 
 
 
-void HelloTriangleApplication::run() {
-    initWindow();
-    initVulkan();
-    mainLoop();
-    cleanup();
-}
-
-
-
-void HelloTriangleApplication::initWindow() {
-    glfwInit();
-
-    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-
-    window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
-    glfwSetWindowUserPointer(window, this);
-    glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
-}
-
 void HelloTriangleApplication::framebufferResizeCallback(GLFWwindow* window, int width, int height) {
     auto app = reinterpret_cast<HelloTriangleApplication*>(glfwGetWindowUserPointer(window));
     app->framebufferResized = true;
@@ -115,14 +97,7 @@ void HelloTriangleApplication::initVulkan() {
     createSyncObjects();
 }
 
-void HelloTriangleApplication::mainLoop() {
-    while (!glfwWindowShouldClose(window)) {
-        glfwPollEvents();
-        drawFrame();
-    }
 
-    vkDeviceWaitIdle(device);
-}
 
 void HelloTriangleApplication::cleanupSwapChain() {
     vkDestroyImageView(device, depthImageView, nullptr);

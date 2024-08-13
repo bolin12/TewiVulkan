@@ -6,6 +6,7 @@
 
 #include "runtime/function/global/global_context.h"
 #include "runtime/function/render/window_system.h"
+#include "runtime/function/render/render_system.h"
 #include "runtime/core/base/macro.h"
 
 void TewiEngine::initialize()
@@ -34,7 +35,7 @@ void TewiEngine::logicTick(float delta_time)
 
 void TewiEngine::rendererTick(float delta_time)
 {
-
+    g_runtime_global_context.m_render_system->tick(delta_time);
 }
 
 

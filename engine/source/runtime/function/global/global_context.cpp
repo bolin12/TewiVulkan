@@ -1,5 +1,5 @@
 #include "global_context.h"
-#include "runtime/function/global/global_context.h"
+
 
 #include "runtime/core/log/log_system.h"
 #include "runtime/function/render/window_system.h"
@@ -11,7 +11,6 @@ RuntimeGlobalContext g_runtime_global_context;
 void RuntimeGlobalContext::startSystems()
 {
     m_logger_system = std::make_shared<LogSystem>();
-
 
 
     m_window_system = std::make_shared<WindowSystem>();

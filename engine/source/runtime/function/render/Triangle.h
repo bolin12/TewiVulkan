@@ -3,25 +3,14 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
-#include "Vertex.h"
+
+struct Vertex;
 
 
-
-
-#include <iostream>
-#include <fstream>
-#include <stdexcept>
-#include <algorithm>
 #include <chrono>
 #include <vector>
-#include <cstring>
-#include <cstdlib>
 #include <cstdint>
-#include <limits>
-#include <array>
 #include <optional>
-#include <set>
-#include <unordered_map>
 
 
 struct QueueFamilyIndices {
@@ -41,7 +30,12 @@ struct SwapChainSupportDetails {
 
 class HelloTriangleApplication {
 public:
-    void run();
+
+    void initVulkan();
+
+    void drawFrame();
+
+    void cleanup() ;
 
 private:
     GLFWwindow* window;
@@ -108,17 +102,14 @@ private:
 
     bool framebufferResized = false;
 
-    void initWindow();
 
     static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
 
-    void initVulkan() ;
 
-    void mainLoop();
 
     void cleanupSwapChain();
 
-    void cleanup() ;
+
 
     void recreateSwapChain();
 
@@ -201,7 +192,7 @@ private:
 
     void updateUniformBuffer(uint32_t currentImage);
 
-    void drawFrame();
+
 
     VkShaderModule createShaderModule(const std::vector<char>& code);
 

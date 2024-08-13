@@ -1,4 +1,6 @@
-#pragma once
+// #pragma once
+
+
 #include <array>
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
