@@ -3,8 +3,7 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
-
-struct Vertex;
+#include "runtime/function/render/Vertex.h"
 
 
 #include <chrono>
@@ -35,7 +34,7 @@ public:
 
     void drawFrame();
 
-    void cleanup() ;
+    void cleanup();
 
 private:
     GLFWwindow* window;

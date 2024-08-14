@@ -1,6 +1,6 @@
 
 #include <cassert>
-#include "editor.h"
+#include "editor/editor.h"
 
 #include "runtime/engine.h"
 

@@ -1,8 +1,8 @@
 #pragma once
 #include <memory>
 
-// #include "runtime/function/render/Triangle.h"
-class HelloTriangleApplication;
+#include "runtime/function/render/Triangle.h"
+
 
 class WindowSystem;
 

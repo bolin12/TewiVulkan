@@ -1,9 +1,9 @@
-#include "global_context.h"
+#include "runtime/function/global/global_context.h"
 
-
+#include "runtime/function/render/render_system.h"
 #include "runtime/core/log/log_system.h"
 #include "runtime/function/render/window_system.h"
-#include "runtime/function/render/render_system.h"
+
 
 RuntimeGlobalContext g_runtime_global_context;
 

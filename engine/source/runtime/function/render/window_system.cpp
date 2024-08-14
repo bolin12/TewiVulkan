@@ -29,7 +29,6 @@ void WindowSystem::initialize(WindowCreateInfo create_info)
 
     glfwSetWindowUserPointer(m_window, this);
     glfwSetKeyCallback(m_window, keyCallback);
-
     glfwSetInputMode(m_window, GLFW_RAW_MOUSE_MOTION, GLFW_FALSE);
 }
 

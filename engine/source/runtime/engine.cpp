@@ -1,37 +1,17 @@
-
-
-#include "engine.h"
-
+#include "runtime/engine.h"
+#include "runtime/core/base/macro.h"
 #include <string>
 
 #include "runtime/function/global/global_context.h"
-#include "runtime/function/render/window_system.h"
 #include "runtime/function/render/render_system.h"
-#include "runtime/core/base/macro.h"
 
-void TewiEngine::initialize()
-{
 
-}
-
-void TewiEngine::clear()
-{
-
-}
+#include "runtime/function/render/window_system.h"
 
 
 
-void TewiEngine::run()
-{
 
 
-}
-
-
-void TewiEngine::logicTick(float delta_time)
-{
-
-}
 
 void TewiEngine::rendererTick(float delta_time)
 {
@@ -107,7 +87,29 @@ bool TewiEngine::tickOneFrame(float delta_time)
 
 
 
+void TewiEngine::initialize()
+{
 
+}
+
+void TewiEngine::clear()
+{
+
+}
+
+
+
+void TewiEngine::run()
+{
+
+
+}
+
+
+void TewiEngine::logicTick(float delta_time)
+{
+
+}
 
 
 

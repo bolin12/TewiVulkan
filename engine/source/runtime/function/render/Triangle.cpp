@@ -1,10 +1,13 @@
 
 #include "runtime/function/render/Triangle.h"
-#include "runtime/function/render/Vertex.h"
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "spdlog/spdlog.h"
 
 #define TINYOBJLOADER_IMPLEMENTATION
+#include <algorithm>
+#include <iostream>
+
 #include "stb_image.h"
 #include "tiny_obj_loader.h"
 const uint32_t WIDTH = 1920;

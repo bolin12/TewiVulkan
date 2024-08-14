@@ -1,4 +1,4 @@
-// #pragma once
+#pragma once
 
 
 #include <array>
@@ -24,7 +24,7 @@ struct Vertex {
 
         return bindingDescription;
     }
-    
+
 
     static std::array<VkVertexInputAttributeDescription, 3> getAttributeDescriptions() {
         std::array<VkVertexInputAttributeDescription, 3> attributeDescriptions{};
@@ -51,3 +51,7 @@ struct Vertex {
         return pos == other.pos && color == other.color && texCoord == other.texCoord;
     }
 };
+
+
+
+
